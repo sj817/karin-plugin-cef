@@ -63,8 +63,8 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "@karinjs/plugin-puppeteer",
-      "component": "@karinjs/plugin-puppeteer"
+      "package-name": "@karinjs/plugin-cef",
+      "component": "@karinjs/plugin-cef"
     }
   }
 }

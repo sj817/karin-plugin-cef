@@ -3,50 +3,42 @@ import path from 'node:path'
 import { karin } from 'node-karin'
 import pkg from '../../package.json'
 import { basePath } from 'node-karin/root'
-import type { PuppeteerLaunchOptions } from '@snapka/puppeteer'
+
+/**
+ * 插件配置类型，包含 cef-screenshot 初始化选项和默认截图参数
+ */
+export interface CefConfig {
+  /** 包含 cef_screenshot_helper 和 CEF 运行时文件的目录 */
+  helperDir?: string
+  /** 浏览器进程数量（默认 1，最大 5） */
+  browsers?: number
+  /** 每个浏览器进程的标签页数量（默认 3，最大 10） */
+  tabs?: number
+  /** 默认视窗宽度（像素），默认 1920 */
+  width?: number
+  /** 默认视窗高度（像素），默认 1080 */
+  height?: number
+  /** 页面加载完成后的额外等待时间（毫秒），默认 500 */
+  delay?: number
+  /** 是否截取完整页面（包括滚动区域），默认 true */
+  fullPage?: boolean
+}
 
 /**
  * 热更新key
  */
-export const HMR_KEY = 'karin-plugin-puppeteer-hmr'
+export const HMR_KEY = 'karin-plugin-cef-hmr'
 
 /**
  * 默认配置
  */
-const defaultConfig: PuppeteerLaunchOptions = {
-  protocol: 'cdp',
-  headless: 'shell',
-  debug: false,
-  findBrowser: true,
-  slowMo: 0,
-  maxOpenPages: 10,
-  pageMode: 'reuse',
-  pageIdleTimeout: 60000,
-  defaultViewport: {
-    width: 800,
-    height: 600
-  },
-  download: {
-    enable: true,
-    browser: 'chrome-headless-shell',
-    version: 'latest'
-  },
-  args: [
-    '--window-size=800,600', // 设置窗口大小
-    '--disable-gpu', // 禁用 GPU 硬件加速
-    '--no-sandbox', // 关闭 Chrome 的沙盒模式
-    '--disable-setuid-sandbox', // 进一步禁用 setuid 沙盒机制，通常和 --no-sandbox 配合使用，避免权限问题
-    '--no-zygote', // 关闭 Chrome 的 zygote 进程，减少进程开销，优化资源使用
-    '--disable-extensions', // 禁用扩展
-    '--disable-dev-shm-usage', // 禁用 /dev/shm（共享内存）用作临时存储，改用磁盘存储
-    '--disable-background-networking', // 禁用后台网络请求
-    '--disable-sync', // 禁用 Chrome 的同步功能
-    '--disable-crash-reporter', // 禁用崩溃报告
-    '--disable-translate', // 禁用翻译
-    '--disable-notifications', // 禁用通知
-    '--disable-device-discovery-notifications', // 禁用设备发现通知
-    '--disable-accelerated-2d-canvas', // 禁用 2D 画布的硬件加速
-  ]
+const defaultConfig: CefConfig = {
+  browsers: 1,
+  tabs: 3,
+  width: 1920,
+  height: 1080,
+  delay: 500,
+  fullPage: true,
 }
 
 /** 插件名称 */
@@ -70,7 +62,7 @@ const init = () => {
 /**
  * 获取配置
  */
-export const getConfig = (): PuppeteerLaunchOptions => {
+export const getConfig = (): CefConfig => {
   const data = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
   return { ...defaultConfig, ...data }
 }
@@ -79,7 +71,7 @@ export const getConfig = (): PuppeteerLaunchOptions => {
  * 保存配置
  * @param config 配置
  */
-export const saveConfig = (config: PuppeteerLaunchOptions) => {
+export const saveConfig = (config: CefConfig) => {
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
   karin.emit(HMR_KEY, config)
 }

@@ -37,26 +37,23 @@ describe('config', () => {
   })
 
   it('应该导出 HMR_KEY', () => {
-    expect(configModule.HMR_KEY).toBe('karin-plugin-puppeteer-hmr')
+    expect(configModule.HMR_KEY).toBe('karin-plugin-cef-hmr')
+  })
+
+  it('应该导出 CefConfig 类型并在默认配置中使用', () => {
+    const config = configModule.getConfig()
+    expect(config).toBeDefined()
+    expect(typeof config).toBe('object')
   })
 
   it('getConfig 应该返回包含默认值的配置', () => {
     const config = configModule.getConfig()
-    expect(config.protocol).toBe('cdp')
-    expect(config.headless).toBe('shell')
-    expect(config.debug).toBe(false)
-    expect(config.findBrowser).toBe(true)
-    expect(config.maxOpenPages).toBe(10)
-    expect(config.pageMode).toBe('reuse')
-    expect(config.pageIdleTimeout).toBe(60000)
-    expect(config.defaultViewport).toEqual({ width: 800, height: 600 })
-    expect(config.download).toEqual({
-      enable: true,
-      browser: 'chrome-headless-shell',
-      version: 'latest',
-    })
-    expect(config.args).toBeInstanceOf(Array)
-    expect(config.args!.length).toBeGreaterThan(0)
+    expect(config.browsers).toBe(1)
+    expect(config.tabs).toBe(3)
+    expect(config.width).toBe(1920)
+    expect(config.height).toBe(1080)
+    expect(config.delay).toBe(500)
+    expect(config.fullPage).toBe(true)
   })
 
   it('saveConfig 应该保存并可重新读取配置', async () => {
@@ -64,26 +61,46 @@ describe('config', () => {
 
     const newConfig = {
       ...configModule.getConfig(),
-      maxOpenPages: 20,
-      debug: true,
+      browsers: 2,
+      tabs: 5,
     }
 
     configModule.saveConfig(newConfig)
 
     const loaded = configModule.getConfig()
-    expect(loaded.maxOpenPages).toBe(20)
-    expect(loaded.debug).toBe(true)
+    expect(loaded.browsers).toBe(2)
+    expect(loaded.tabs).toBe(5)
     expect(karin.emit).toHaveBeenCalledWith(configModule.HMR_KEY, newConfig)
   })
 
   it('saveConfig 应该在配置 JSON 中正确持久化', () => {
     configModule.saveConfig({
       ...configModule.getConfig(),
-      slowMo: 500,
+      delay: 1000,
     })
 
     const raw = fs.readFileSync(configModule.configPath, 'utf-8')
     const parsed = JSON.parse(raw)
-    expect(parsed.slowMo).toBe(500)
+    expect(parsed.delay).toBe(1000)
+  })
+
+  it('saveConfig 应该可以保存 helperDir', () => {
+    configModule.saveConfig({
+      ...configModule.getConfig(),
+      helperDir: '/custom/path',
+    })
+
+    const loaded = configModule.getConfig()
+    expect(loaded.helperDir).toBe('/custom/path')
+  })
+
+  it('saveConfig 应该可以保存 fullPage 为 false', () => {
+    configModule.saveConfig({
+      ...configModule.getConfig(),
+      fullPage: false,
+    })
+
+    const loaded = configModule.getConfig()
+    expect(loaded.fullPage).toBe(false)
   })
 })

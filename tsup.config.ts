@@ -29,7 +29,7 @@ export default defineConfig({
   external: [
     ...builtinModules,
     ...builtinModules.map((m) => `node:${m}`),
-    '@snapka/puppeteer',
+    'cef-screenshot',
     'node-karin',
   ],
 })
