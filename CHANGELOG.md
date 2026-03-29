@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/sj817/karin-plugin-cef/compare/v1.0.0...v1.1.0) (2026-03-29)
+
+
+### ✨ Features
+
+* init ([a32f0ea](https://github.com/sj817/karin-plugin-cef/commit/a32f0ea64259cf96752d6dfe8ea42503113092fa))
+
 ## [1.0.0](https://github.com/sj817/karin-plugin-cef/compare/v0.0.1...v1.0.0) (2026-03-29)
 
 
