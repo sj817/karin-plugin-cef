@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/sj817/karin-plugin-cef/compare/v1.0.0...v2.0.0) (2026-03-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* 1.0.0
+
+### ✨ Features
+
+* 1.0.0 ([4a5c2a3](https://github.com/sj817/karin-plugin-cef/commit/4a5c2a3d3ff5263b9e3364b14eebd076b4d061f2))
+
 ## [1.0.0](https://github.com/sj817/karin-plugin-cef/compare/v0.0.1...v1.0.0) (2026-03-29)
 
 
