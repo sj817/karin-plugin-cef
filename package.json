@@ -1,6 +1,6 @@
 {
   "name": "@karinjs/plugin-cef",
-  "version": "2.1.0",
+  "version": "0.0.1",
   "description": "karin 的 cef-screenshot 截图、渲染插件",
   "keywords": [
     "karin",
@@ -57,5 +57,8 @@
   },
   "engines": {
     "node": ">=22.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
