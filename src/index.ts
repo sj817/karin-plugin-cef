@@ -30,6 +30,9 @@ const main = async () => {
 
     const time = Date.now()
     const url = typeof data?.file === 'string' ? data.file : ''
+    if (!url) {
+      throw new Error('渲染模板未提供有效的文件路径')
+    }
     const buf = await screenshot(url, {
       width: config.width,
       height: config.height,

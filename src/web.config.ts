@@ -119,13 +119,19 @@ const webConfig: {
 
   /** 前端点击保存之后调用的方法 */
   save: (config: CefConfig) => {
+    const browsers = Number(config.browsers) || 1
+    const tabs = Number(config.tabs) || 3
+    const width = Number(config.width) || 1920
+    const height = Number(config.height) || 1080
+    const delay = Number(config.delay) || 500
+
     config = {
       ...config,
-      browsers: Number(config.browsers || 1),
-      tabs: Number(config.tabs || 3),
-      width: Number(config.width || 1920),
-      height: Number(config.height || 1080),
-      delay: Number(config.delay || 500),
+      browsers: Math.max(1, Math.min(5, browsers)),
+      tabs: Math.max(1, Math.min(10, tabs)),
+      width: Math.max(1, Math.min(10000, width)),
+      height: Math.max(1, Math.min(10000, height)),
+      delay: Math.max(0, Math.min(30000, delay)),
     }
 
     saveConfig(config)
