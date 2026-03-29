@@ -1,0 +1,64 @@
+{
+  "name": "@karinjs/plugin-cef",
+  "version": "1.0.1",
+  "description": "karin 的 cef-screenshot 截图、渲染插件",
+  "keywords": [
+    "karin",
+    "node-karin",
+    "karin-plugin",
+    "cef",
+    "screenshot",
+    "headless"
+  ],
+  "license": "MIT",
+  "author": "sj817",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sj817/karin-plugin-cef.git"
+  },
+  "scripts": {
+    "build": "tsc && tsup",
+    "dev": "tsx src/app.ts",
+    "dev:test": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "pub": "pnpm publish --access public",
+    "rm": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "lint": "eslint src/",
+    "sync": "curl -X PUT \"https://registry-direct.npmmirror.com/-/package/@karinjs/plugin-cef/syncs\""
+  },
+  "dependencies": {
+    "cef-screenshot": "0.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "eslint": "10.0.1",
+    "neostandard": "0.12.2",
+    "node-karin": "^1.14.3",
+    "tsup": "^8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "^3.0.0"
+  },
+  "karin": {
+    "main": "src/index.ts",
+    "apps": [],
+    "web": "dist/web.config.js",
+    "ts-web": "src/web.config.ts",
+    "files": [
+      "config"
+    ]
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
