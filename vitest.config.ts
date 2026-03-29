@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       'node-karin': path.resolve(import.meta.dirname, 'src/__mocks__/node-karin.ts'),
       'node-karin/root': path.resolve(import.meta.dirname, 'src/__mocks__/node-karin-root.ts'),
+      'cef-screenshot': path.resolve(import.meta.dirname, 'src/__mocks__/cef-screenshot.ts'),
     },
   },
 })

@@ -1,13 +1,12 @@
-# @karinjs/plugin-puppeteer
+# @karinjs/plugin-cef
 
-[node-karin](https://github.com/KarinJS/Karin) 的 Puppeteer 截图/渲染插件，基于 [@snapka/puppeteer](https://www.npmjs.com/package/@snapka/puppeteer) 封装。
+[node-karin](https://github.com/KarinJS/Karin) 的 CEF 截图/渲染插件，基于 [cef-screenshot](https://github.com/sj817/cef-screenshot) 封装。
 
 ## 功能
 
-- 自动下载/查找系统中的 Chrome 浏览器
-- 支持 CDP 和 WebDriver BiDi 两种协议
-- 页面池管理（复用 / 一次性模式）
-- 并发截图队列与限速
+- 基于 CEF 离屏渲染的超低内存网页截图
+- 多浏览器进程 + 多标签页并发截图
+- 全页截图、元素选择器截图
 - 提供 Web 管理面板（通过 node-karin Web UI 配置）
 - 配置热更新
 
@@ -16,12 +15,12 @@
 作为 [node-karin](https://github.com/KarinJS/Karin) 插件安装：
 
 ```bash
-pnpm add @karinjs/plugin-puppeteer -w
+pnpm add @karinjs/plugin-cef -w
 ```
 
 ## 配置
 
-插件首次运行时会自动生成默认配置文件，位于 `<karin数据目录>/@karinjs-plugin-puppeteer/config/config.json`。
+插件首次运行时会自动生成默认配置文件，位于 `<karin数据目录>/@karinjs-plugin-cef/config/config.json`。
 
 也可以通过 node-karin 的 Web 管理面板修改配置。
 
@@ -29,49 +28,25 @@ pnpm add @karinjs/plugin-puppeteer -w
 
 | 配置项 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `protocol` | `'cdp' \| 'webDriverBiDi'` | `'cdp'` | 浏览器通信协议。CDP 稳定，BiDi 更快但仍在开发中 |
-| `headless` | `'new' \| 'shell' \| false` | `'shell'` | 无头模式。`'new'` 新版无头、`'shell'` 传统无头（仅 chrome-headless-shell）、`false` 有头 |
-| `debug` | `boolean` | `false` | 调试模式，浏览器前台运行且页面不自动关闭（仅 Windows） |
-| `findBrowser` | `boolean` | `true` | 是否使用 @snapka/browser-finder 自动查找系统/puppeteer/playwright 已有的浏览器 |
-| `pipe` | `boolean` | `false` | 是否使用管道模式与浏览器通信 |
-| `slowMo` | `number` | `0` | 操作延迟（毫秒），用于调试 |
-| `maxOpenPages` | `number` | `10` | 最大同时打开的标签页数量，超出排队 |
-| `pageMode` | `'reuse' \| 'disposable'` | `'reuse'` | 页面模式。复用模式性能好，一次性模式隔离性强 |
-| `pageIdleTimeout` | `number` | `60000` | 页面空闲超时时间（毫秒），`0` 表示永不超时 |
-| `defaultViewport` | `{ width, height }` | `{ width: 800, height: 600 }` | 默认视窗大小 |
-| `executablePath` | `string` | - | 浏览器可执行文件路径，为空则自动下载/查找 |
-| `userDataDir` | `string` | - | 浏览器用户数据目录 |
-| `args` | `string[]` | 见下方 | Chrome 启动参数 |
-| `download.enable` | `boolean` | `true` | 是否启用浏览器自动下载 |
-| `download.browser` | `'chrome' \| 'chromium' \| 'chrome-headless-shell'` | `'chrome-headless-shell'` | 下载的浏览器类型 |
-| `download.version` | `string` | `'latest'` | 浏览器版本，支持 `latest`、`stable`、`beta`、`dev`、`canary` 或具体版本号 |
-| `download.dir` | `string` | - | 下载目录，为空使用默认路径 |
-| `download.baseUrl` | `string` | - | 自定义下载源 URL |
+| `helperDir` | `string` | - | CEF helper 和运行时文件目录，为空则自动检测 |
+| `browsers` | `number` | `1` | 浏览器进程数量（最大 5），每个进程是独立的 CEF 实例 |
+| `tabs` | `number` | `3` | 每个浏览器进程的标签页数量（最大 10），总并发数 = browsers × tabs |
+| `width` | `number` | `1920` | 默认视窗宽度（像素） |
+| `height` | `number` | `1080` | 默认视窗高度（像素） |
+| `delay` | `number` | `500` | 页面加载完成后的额外等待时间（毫秒） |
+| `fullPage` | `boolean` | `true` | 是否截取完整页面（包括滚动区域） |
 
-### 默认启动参数
+### 资源配置建议
 
-```
---window-size=800,600
---disable-gpu
---no-sandbox
---disable-setuid-sandbox
---no-zygote
---disable-extensions
---disable-dev-shm-usage
---disable-background-networking
---disable-sync
---disable-crash-reporter
---disable-translate
---disable-notifications
---disable-device-discovery-notifications
---disable-accelerated-2d-canvas
-```
+- **低配置机器**：`browsers: 1, tabs: 3-5`（节省内存）
+- **高配置机器**：`browsers: 2-5, tabs: 3-10`（最大化吞吐量）
+- 总并发数 = `browsers × tabs`（最大 50）
 
 ## 开发
 
 ### 环境要求
 
-- Node.js >= 18
+- Node.js >= 22.6.0
 - pnpm
 
 ### 目录结构

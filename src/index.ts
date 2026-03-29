@@ -1,23 +1,46 @@
 import path from 'node:path'
-import { snapka } from '@snapka/puppeteer'
+import { init, screenshot, shutdown } from 'cef-screenshot'
 import { logger, registerRender, renderTpl, karin, type Snapka } from 'node-karin'
 import { pluginName, pluginVersion, getConfig, HMR_KEY } from './config'
 import { formatBytes, getScreenshotByteSize } from './utils'
 
 const main = async () => {
   const config = getConfig()
-  const browser = await snapka.launch(config)
-  karin.on(HMR_KEY, async () => await browser.restart())
+  await init({
+    helperDir: config.helperDir,
+    browsers: config.browsers,
+    tabs: config.tabs,
+  })
 
-  const name = '@karinjs/plugin-puppeteer'
+  karin.on(HMR_KEY, async () => {
+    await shutdown()
+    const newConfig = getConfig()
+    await init({
+      helperDir: newConfig.helperDir,
+      browsers: newConfig.browsers,
+      tabs: newConfig.tabs,
+    })
+  })
+
+  const name = '@karinjs/plugin-cef'
   registerRender(name, async (options: Snapka) => {
     options.encoding = 'base64'
     const data = renderTpl(options)
     data.encoding = options.encoding
 
     const time = Date.now()
-    const { run } = await browser.screenshot(data as any)
-    const result = await run()
+    const url = typeof data?.file === 'string' ? data.file : ''
+    if (!url) {
+      throw new Error('渲染模板未提供有效的文件路径')
+    }
+    const buf = await screenshot(url, {
+      width: config.width,
+      height: config.height,
+      delay: config.delay,
+      fullPage: config.fullPage,
+    })
+
+    const result = buf.toString('base64')
 
     const fileName = typeof data?.file === 'string' ? path.basename(data.file) : 'unknown'
 
@@ -36,4 +59,5 @@ const main = async () => {
 
 main()
 
-export * from '@snapka/puppeteer'
+export { init, screenshot, shutdown } from 'cef-screenshot'
+export type { InitOptions, ScreenshotOptions, SlicedScreenshotOptions } from 'cef-screenshot'
