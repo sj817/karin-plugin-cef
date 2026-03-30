@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       cef-screenshot:
-        specifier: 0.2.3
-        version: 0.2.3
+        specifier: 0.3.0
+        version: 0.3.0
     devDependencies:
       '@types/node':
         specifier: ^22.5.4
@@ -1268,50 +1268,50 @@ packages:
     resolution: {integrity: sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==}
     engines: {node: '>= 0.4'}
 
-  cef-screenshot-darwin-arm64@0.2.3:
-    resolution: {integrity: sha512-VxbwuLHHU2dnFSlQrAewQEFm03NsukBvxPTkejmF2VT4vGRCOuPKZE8ztnh87L/G/aYrkivElPZDrLlOlsgvKQ==}
+  cef-screenshot-darwin-arm64@0.3.0:
+    resolution: {integrity: sha512-96mQ+hGZTXYLa1I+1UW+cCDAogyNLGCqsb1U1TNikmFt5x078lKHza+NXBrqrhMjKMzyJ5zIhJjLxTTdTlaq+w==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [arm64]
     os: [darwin]
 
-  cef-screenshot-darwin-x64@0.2.3:
-    resolution: {integrity: sha512-ZLdLMQdCzsENc5IzCjALZDzBa9MK7YMRN3etns3H5vr33dB6mP6ljtkKDDm4iPNZCeaQGRGKQ6pIn280BFex1Q==}
+  cef-screenshot-darwin-x64@0.3.0:
+    resolution: {integrity: sha512-5GL9UrGLGJifuFeQkyzqEorEqdctYdsQTEgP/mfD833/gYzT9mDggZ2sq/ss8gV2JIl8N5xJs+3J/0xa5+C+AA==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [x64]
     os: [darwin]
 
-  cef-screenshot-linux-arm-gnueabihf@0.2.3:
-    resolution: {integrity: sha512-M1kd3eTd9lw0Bryc3CufNjKJdyd2vE/KgNbCqFrDGekplV1wL4N+yP/G/4aqs2/sfWQEsF/FpHO1Uu7gFM1G8g==}
+  cef-screenshot-linux-arm-gnueabihf@0.3.0:
+    resolution: {integrity: sha512-WZxOoZUebfY0XzFB5bTl4/B4VDzhm4MCGpANZ82B8yRXl7y64eafu1krsUiIlzriFgBOHdWKrjQNnCT+RAzbpw==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [arm]
     os: [linux]
 
-  cef-screenshot-linux-arm64-gnu@0.2.3:
-    resolution: {integrity: sha512-R3g1rvZKS2xLGX/7MVvsmv78B9XIYZAFUWY7hiTceKSc+uebjJbUMAXLx1Idk+M1AaIoCBd189SZTCIAQ+zk2Q==}
+  cef-screenshot-linux-arm64-gnu@0.3.0:
+    resolution: {integrity: sha512-ZuYAEYGBpQMNWz1NMKostysdjl/PfbbWomml8cXABkLPTL2muUw1c4pgVfjz5kuuWfDrP/kwEygtcxZeplwGGw==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [arm64]
     os: [linux]
 
-  cef-screenshot-linux-x64-gnu@0.2.3:
-    resolution: {integrity: sha512-URVM/ulEnRAbiLjyAk8eoPVgi/VSmnSmkTHzJ50A+isCvIvP/B7knWk5Ov2TfPXOdq0UHN8OTNbrWEWUsrN3Ug==}
+  cef-screenshot-linux-x64-gnu@0.3.0:
+    resolution: {integrity: sha512-qzKQpPh5EySgjqrr0ODsF+hxH6i0WE6wtUfJg0e6kXxqcvz63qhuyhzHwgvJLzGe4FfywGQK1UQKoSHBNtmb3g==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [x64]
     os: [linux]
 
-  cef-screenshot-win32-arm64-msvc@0.2.3:
-    resolution: {integrity: sha512-ISos8c638qKWT9fqkWPqcaul7ll85KQRk8fcM9uBVPpmjENw6qOkd96cJWFCCF+Cm0j8MdUsAk5WXzGs2W/B+w==}
+  cef-screenshot-win32-arm64-msvc@0.3.0:
+    resolution: {integrity: sha512-b8oc7lDDXk/GVvzC8MiWvqk/yRqbrgsWVlAX2C7KclHMxsjJrgsRK2GL6gj3RduhZha/jkrpxrx3hgWQEqwxvQ==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [arm64]
     os: [win32]
 
-  cef-screenshot-win32-x64-msvc@0.2.3:
-    resolution: {integrity: sha512-HdhXICZJznAbOFskJzCi67grYjQD+AtXi+eN7YbEHZsND/0L9MlAvgYRMl+zsdoFIzqPFf23Bu5Oox0VV5fj0Q==}
+  cef-screenshot-win32-x64-msvc@0.3.0:
+    resolution: {integrity: sha512-k5sFZaidc8wOc8TU6JERFWbixjtpzT9iAw5Fy5oqQHAw2wZx/PizI47BIw75IQqCT7FLLuU7ePP2aTvar1X8WQ==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
     cpu: [x64]
     os: [win32]
 
-  cef-screenshot@0.2.3:
-    resolution: {integrity: sha512-BhHYxkHid5zamRIk/eb+6AlB8KthCbqQtp8k0N68jdkNlmsAJ8U9KY2JKi56FSOJHu0T20eHSuoQjY1Dm8FOzA==}
+  cef-screenshot@0.3.0:
+    resolution: {integrity: sha512-MN9m3hBDNXOUL+r/Xr0oNpbH0Zrk4CHmZj7FQ9wk51z6XvCtlUwYFbj1dwS4omIf/XRnm1VvPmm8wm0J6iOWyw==}
     engines: {node: '>=22.6.0', pnpm: '>=9'}
 
   chai@5.2.0:
@@ -3984,36 +3984,36 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       get-intrinsic: 1.3.0
 
-  cef-screenshot-darwin-arm64@0.2.3:
+  cef-screenshot-darwin-arm64@0.3.0:
     optional: true
 
-  cef-screenshot-darwin-x64@0.2.3:
+  cef-screenshot-darwin-x64@0.3.0:
     optional: true
 
-  cef-screenshot-linux-arm-gnueabihf@0.2.3:
+  cef-screenshot-linux-arm-gnueabihf@0.3.0:
     optional: true
 
-  cef-screenshot-linux-arm64-gnu@0.2.3:
+  cef-screenshot-linux-arm64-gnu@0.3.0:
     optional: true
 
-  cef-screenshot-linux-x64-gnu@0.2.3:
+  cef-screenshot-linux-x64-gnu@0.3.0:
     optional: true
 
-  cef-screenshot-win32-arm64-msvc@0.2.3:
+  cef-screenshot-win32-arm64-msvc@0.3.0:
     optional: true
 
-  cef-screenshot-win32-x64-msvc@0.2.3:
+  cef-screenshot-win32-x64-msvc@0.3.0:
     optional: true
 
-  cef-screenshot@0.2.3:
+  cef-screenshot@0.3.0:
     optionalDependencies:
-      cef-screenshot-darwin-arm64: 0.2.3
-      cef-screenshot-darwin-x64: 0.2.3
-      cef-screenshot-linux-arm-gnueabihf: 0.2.3
-      cef-screenshot-linux-arm64-gnu: 0.2.3
-      cef-screenshot-linux-x64-gnu: 0.2.3
-      cef-screenshot-win32-arm64-msvc: 0.2.3
-      cef-screenshot-win32-x64-msvc: 0.2.3
+      cef-screenshot-darwin-arm64: 0.3.0
+      cef-screenshot-darwin-x64: 0.3.0
+      cef-screenshot-linux-arm-gnueabihf: 0.3.0
+      cef-screenshot-linux-arm64-gnu: 0.3.0
+      cef-screenshot-linux-x64-gnu: 0.3.0
+      cef-screenshot-win32-arm64-msvc: 0.3.0
+      cef-screenshot-win32-x64-msvc: 0.3.0
 
   chai@5.2.0:
     dependencies:

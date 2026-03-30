@@ -44,10 +44,17 @@ const main = async () => {
 
     const cfg: SlicedScreenshotOptions = {
       delay: 300,
+      ...data,
+      pageGotoParams: {
+        timeout: data.pageGotoParams?.timeout,
+        waitUntil: Array.isArray(data.pageGotoParams?.waitUntil)
+          ? 'networkidle0'
+          : data.pageGotoParams?.waitUntil
+      },
       width: config.width,
       height: config.height,
       fullPage: data.fullPage,
-      selector: data.selector || 'container',
+      selector: data.selector,
       sliceHeight
     }
 
