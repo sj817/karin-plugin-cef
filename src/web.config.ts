@@ -94,26 +94,7 @@ const webConfig: {
           }
         ]
       }),
-      components.divider.create('divider2'),
-      components.input.number('delay', {
-        label: '页面加载等待',
-        description: '页面加载完成后的额外等待时间（毫秒），默认 500',
-        defaultValue: (config.delay || 500) + '',
-        className: 'inline-block p-2',
-        rules: [
-          {
-            min: 0,
-            max: 30000,
-            error: '等待时间必须在0-30000之间'
-          }
-        ]
-      }),
-      components.switch.create('fullPage', {
-        label: '全页截图',
-        description: '是否截取完整页面（包括滚动区域），关闭则仅截取视窗可见区域',
-        defaultSelected: config.fullPage !== false,
-        color: 'success',
-      }),
+
     ]
   },
 
@@ -123,7 +104,6 @@ const webConfig: {
     const tabs = Number(config.tabs) || 3
     const width = Number(config.width) || 1920
     const height = Number(config.height) || 1080
-    const delay = Number(config.delay) || 500
 
     config = {
       ...config,
@@ -131,7 +111,6 @@ const webConfig: {
       tabs: Math.max(1, Math.min(10, tabs)),
       width: Math.max(1, Math.min(10000, width)),
       height: Math.max(1, Math.min(10000, height)),
-      delay: Math.max(0, Math.min(30000, delay)),
     }
 
     saveConfig(config)

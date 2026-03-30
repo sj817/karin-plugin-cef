@@ -11,6 +11,7 @@ export default defineConfig({
   dts: {
     resolve: true,
     compilerOptions: {
+      ignoreDeprecations: '6.0',
       removeComments: false,
       noUnusedLocals: false,
       noUnusedParameters: false,

@@ -52,8 +52,6 @@ describe('config', () => {
     expect(config.tabs).toBe(3)
     expect(config.width).toBe(1920)
     expect(config.height).toBe(1080)
-    expect(config.delay).toBe(500)
-    expect(config.fullPage).toBe(true)
   })
 
   it('saveConfig 应该保存并可重新读取配置', async () => {
@@ -76,12 +74,12 @@ describe('config', () => {
   it('saveConfig 应该在配置 JSON 中正确持久化', () => {
     configModule.saveConfig({
       ...configModule.getConfig(),
-      delay: 1000,
+      browsers: 4,
     })
 
     const raw = fs.readFileSync(configModule.configPath, 'utf-8')
     const parsed = JSON.parse(raw)
-    expect(parsed.delay).toBe(1000)
+    expect(parsed.browsers).toBe(4)
   })
 
   it('saveConfig 应该可以保存 helperDir', () => {
@@ -94,13 +92,15 @@ describe('config', () => {
     expect(loaded.helperDir).toBe('/custom/path')
   })
 
-  it('saveConfig 应该可以保存 fullPage 为 false', () => {
+  it('saveConfig 应该可以保存 width 和 height', () => {
     configModule.saveConfig({
       ...configModule.getConfig(),
-      fullPage: false,
+      width: 1280,
+      height: 720,
     })
 
     const loaded = configModule.getConfig()
-    expect(loaded.fullPage).toBe(false)
+    expect(loaded.width).toBe(1280)
+    expect(loaded.height).toBe(720)
   })
 })

@@ -18,10 +18,6 @@ export interface CefConfig {
   width?: number
   /** 默认视窗高度（像素），默认 1080 */
   height?: number
-  /** 页面加载完成后的额外等待时间（毫秒），默认 500 */
-  delay?: number
-  /** 是否截取完整页面（包括滚动区域），默认 true */
-  fullPage?: boolean
 }
 
 /**
@@ -37,8 +33,6 @@ const defaultConfig: CefConfig = {
   tabs: 3,
   width: 1920,
   height: 1080,
-  delay: 500,
-  fullPage: true,
 }
 
 /** 插件名称 */

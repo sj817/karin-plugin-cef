@@ -4,6 +4,8 @@ import { logger, registerRender, renderTpl, karin, type Snapka } from 'node-kari
 import { pluginName, pluginVersion, getConfig, HMR_KEY } from './config'
 import { formatBytes, getScreenshotByteSize } from './utils'
 
+import type { ScreenshotOptions, SlicedScreenshotOptions } from 'cef-screenshot'
+
 const main = async () => {
   const config = getConfig()
   await init({
@@ -33,15 +35,25 @@ const main = async () => {
     if (!url) {
       throw new Error('渲染模板未提供有效的文件路径')
     }
-    const buf = await screenshot(url, {
+
+    const sliceHeight = (() => {
+      if (data.multiPage === true) return 1200
+      if (typeof data.multiPage === 'number') return data.multiPage
+      return 0
+    })()
+
+    const cfg: SlicedScreenshotOptions = {
+      delay: 300,
       width: config.width,
       height: config.height,
-      delay: config.delay,
-      fullPage: config.fullPage,
-    })
+      fullPage: data.fullPage,
+      selector: data.selector || 'container',
+      sliceHeight
+    }
 
-    const result = buf.toString('base64')
+    const bufs = await screenshot(url, cfg) as Buffer | Buffer[]
 
+    const result = Array.isArray(bufs) ? bufs.map(v => v.toString('base64')) : bufs.toString('base64')
     const fileName = typeof data?.file === 'string' ? path.basename(data.file) : 'unknown'
 
     const sizeBytes = getScreenshotByteSize(result, options.encoding)
@@ -51,7 +63,7 @@ const main = async () => {
       `[${name}][${fileName}] 截图完成 ${sizeStr}耗时: ${logger.green(Date.now() - time + '')} ms`
     )
 
-    return result as any
+    return result
   })
 
   logger.info(`${logger.violet(`[插件:${pluginVersion}]`)} ${logger.green(pluginName)} 初始化完成~`)

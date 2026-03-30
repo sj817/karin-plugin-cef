@@ -35,15 +35,15 @@
     "sync": "curl -X PUT \"https://registry-direct.npmmirror.com/-/package/@karinjs/plugin-cef/syncs\""
   },
   "dependencies": {
-    "cef-screenshot": "0.2.2"
+    "cef-screenshot": "0.2.3"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
-    "eslint": "10.0.1",
+    "eslint": "10.1.0",
     "neostandard": "0.12.2",
-    "node-karin": "^1.14.3",
+    "node-karin": "^1.15.1",
     "tsup": "^8.5.1",
-    "typescript": "5.9.3",
+    "typescript": "6.0.2",
     "vitest": "^3.0.0"
   },
   "karin": {

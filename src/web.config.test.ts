@@ -51,8 +51,6 @@ describe('web.config', () => {
       tabs: 5,
       width: 1280,
       height: 800,
-      delay: 300,
-      fullPage: true,
     })
     expect(result.success).toBe(true)
     expect(result.message).toBeTruthy()
@@ -65,8 +63,6 @@ describe('web.config', () => {
       tabs: 8,
       width: 1440,
       height: 900,
-      delay: 1000,
-      fullPage: false,
     })
 
     const { getConfig } = await import('./config/index')
@@ -75,8 +71,6 @@ describe('web.config', () => {
     expect(loaded.tabs).toBe(8)
     expect(loaded.width).toBe(1440)
     expect(loaded.height).toBe(900)
-    expect(loaded.delay).toBe(1000)
-    expect(loaded.fullPage).toBe(false)
   })
 
   it('save 应该将字符串数字转换为数字类型', () => {
@@ -86,7 +80,6 @@ describe('web.config', () => {
       tabs: '5' as unknown as number,
       width: '1280' as unknown as number,
       height: '800' as unknown as number,
-      delay: '300' as unknown as number,
     })
     expect(result.success).toBe(true)
   })
