@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/sj817/karin-plugin-cef/compare/v1.1.1...v1.1.2) (2026-03-30)
+
+
+### 🐛 Bug Fixes
+
+* container ([2402cd9](https://github.com/sj817/karin-plugin-cef/commit/2402cd980af8fe59a1827dff3915171a3ebf5c6b))
+
 ## [1.1.1](https://github.com/sj817/karin-plugin-cef/compare/v1.1.0...v1.1.1) (2026-03-30)
 
 
