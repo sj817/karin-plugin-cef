@@ -35,7 +35,7 @@
     "sync": "curl -X PUT \"https://registry-direct.npmmirror.com/-/package/@karinjs/plugin-cef/syncs\""
   },
   "dependencies": {
-    "cef-screenshot": "0.3.1"
+    "cef-screenshot": "0.3.2"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
