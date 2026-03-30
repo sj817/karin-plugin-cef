@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/sj817/karin-plugin-cef/compare/v1.1.0...v1.1.1) (2026-03-30)
+
+
+### 🐛 Bug Fixes
+
+* remove deprecated delay/fullPage from CefConfig and fix build ([0e03f91](https://github.com/sj817/karin-plugin-cef/commit/0e03f918819d8a21c1590d356e002fd785be8163))
+
 ## [1.1.0](https://github.com/sj817/karin-plugin-cef/compare/v1.0.0...v1.1.0) (2026-03-29)
 
 
