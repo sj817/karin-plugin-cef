@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/sj817/karin-plugin-cef/compare/v1.1.3...v1.1.4) (2026-03-30)
+
+
+### 🐛 Bug Fixes
+
+* core version ([cba300f](https://github.com/sj817/karin-plugin-cef/commit/cba300fc512e2ca96ebe23195dc5fb0d4f9955da))
+
 ## [1.1.3](https://github.com/sj817/karin-plugin-cef/compare/v1.1.2...v1.1.3) (2026-03-30)
 
 
